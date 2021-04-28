@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 import ua.azbest.csstatservice.PictureUpdateActivity;
 import ua.azbest.csstatservice.R;
+import ua.azbest.csstatservice.controller.PictureDetailActivity;
 import ua.azbest.csstatservice.model.Picture;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
@@ -25,6 +28,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private List<Picture> gallery;
     Activity activity;
     private int position;
+
+    Animation translate_anim;
 
     public CustomAdapter(Activity activity, Context context, List<Picture> gallery) {
         this.activity = activity;
@@ -49,9 +54,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.startDate.setText(gallery.get(position).getStringStartDate());
         holder.wishDate.setText(gallery.get(position).getStringWishDate());
         holder.rowLayout.setOnClickListener((v) -> {
-            Intent intent = new Intent(context, PictureUpdateActivity.class);
+//            Intent intent = new Intent(context, PictureUpdateActivity.class);
+            Intent intent = new Intent(context, PictureDetailActivity.class);
             intent.putExtra("pictureData", gallery.get(position));
-//            context.startActivity(intent);
+            context.startActivity(intent);
             activity.startActivityForResult(intent, 1);
         });
 
@@ -74,6 +80,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             startDate = itemView.findViewById(R.id.textViewStartDate);
             wishDate = itemView.findViewById(R.id.textViewWishDate);
             rowLayout = itemView.findViewById(R.id.rowLayout);
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            rowLayout.setAnimation(translate_anim);
         }
     }
 

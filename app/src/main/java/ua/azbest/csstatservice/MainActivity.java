@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import ua.azbest.csstatservice.controller.PictureDetailActivity;
 import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.view.CustomAdapter;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FloatingActionButton addPictureButton;
+    FloatingActionButton activatePictureDetail;
     ImageView imageView;
     TextView textView;
 
@@ -59,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycleView);
         imageView = findViewById(R.id.imageViewEmptyData);
         textView = findViewById(R.id.textViewNoData);
+
+        /*activatePictureDetail = findViewById(R.id.pictureDetail);
+        activatePictureDetail.setOnClickListener((v) -> {
+            Intent intent = new Intent(MainActivity.this, PictureDetailActivity.class);
+            startActivity(intent);
+        });*/
 
         addPictureButton = findViewById(R.id.addPicture);
         addPictureButton.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void storeDataInArray() {
         Cursor cursor = myDB.readAllData();
+        Log.d(TAG, String.valueOf(cursor.getCount()));
         if (cursor.getCount() == 0) {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
             imageView.setVisibility(View.VISIBLE);

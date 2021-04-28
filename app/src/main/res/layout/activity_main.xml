@@ -29,6 +29,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_white" />
 
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pictureDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:contentDescription="@string/pictureDetail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addPicture"
+        app:srcCompat="@drawable/ic_activate" />-->
+
     <ImageView
         android:id="@+id/imageViewEmptyData"
         android:layout_width="wrap_content"

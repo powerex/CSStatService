@@ -12,6 +12,9 @@
         <activity android:name=".PictureUpdateActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity android:name=".controller.PictureDetailActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity
             android:name=".AddPictureActivity"
             android:label="AddPicture"

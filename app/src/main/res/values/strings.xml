@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CSStatService</string>
     <string name="addNewPictureButton">addNewPictureButton</string>
+    <string name="pictureDetail">Picture Detail</string>
 </resources>

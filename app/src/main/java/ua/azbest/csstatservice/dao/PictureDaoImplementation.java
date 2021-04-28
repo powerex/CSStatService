@@ -5,14 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.view.View;
 import android.widget.Toast;
+import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.Nullable;
 
 import ua.azbest.csstatservice.model.Picture;
 
-public class PictureDaoImplementation extends SQLiteOpenHelper implements PictuteDAO {
+public class PictureDaoImplementation extends SQLiteOpenHelper implements PictureDAO {
 
     private Context context;
     private static final String DATABASE_NAME = "CrossStitchLibrary.db";
@@ -47,7 +47,8 @@ public class PictureDaoImplementation extends SQLiteOpenHelper implements Pictut
         onCreate(db);
     }
 
-    public void addPicture(Picture picture) {
+    @Override
+    public void addPicture(@NotNull Picture picture) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, picture.getTitle());
@@ -62,6 +63,7 @@ public class PictureDaoImplementation extends SQLiteOpenHelper implements Pictut
         }
     }
 
+    @Override
     public Cursor readAllData() {
        String query = "SELECT * FROM " + TABLE_NAME;
        SQLiteDatabase db = this.getReadableDatabase();
@@ -72,6 +74,7 @@ public class PictureDaoImplementation extends SQLiteOpenHelper implements Pictut
        return cursor;
     }
 
+    @Override
     public void updateData(String row_id, Picture picture) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -88,6 +91,7 @@ public class PictureDaoImplementation extends SQLiteOpenHelper implements Pictut
         }
     }
 
+    @Override
     public void deleteOneRecord(String rowId) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "id=?", new String[]{rowId});
@@ -98,6 +102,7 @@ public class PictureDaoImplementation extends SQLiteOpenHelper implements Pictut
         }
     }
 
+    @Override
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
