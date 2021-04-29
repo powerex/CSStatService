@@ -1,5 +1,7 @@
 package ua.azbest.csstatservice.controller;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import ua.azbest.csstatservice.MainActivity;
+import ua.azbest.csstatservice.PictureUpdateActivity;
 import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.model.Picture;
 
@@ -29,10 +33,18 @@ public class PictureDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_picture_detail);
         addRecordButton = findViewById(R.id.floatingActionButtonRecordAdd);
         textViewPictureTitle = findViewById(R.id.textViewPictureTitle);
         textViewCrossStitchLeft = findViewById(R.id.textViewCrossStitchLeft);
+
+        addRecordButton.setOnClickListener((v) -> {
+            Intent intent = new Intent(this, AddRecordActivity.class);
+            intent.putExtra("pictureDataId", picture.getId());
+            intent.putExtra("pictureDataTitle", picture.getTitle());
+            startActivity(intent);
+        });
 
         getAndSetIntentData();
 
@@ -52,10 +64,12 @@ public class PictureDetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.editPicture) {
-            //TODO activate picture edit activity
+            Intent intent = new Intent(this, PictureUpdateActivity.class);
+            intent.putExtra("pictureData", picture);
+            startActivity(intent);
         }
         if (item.getItemId() == R.id.viewPictureRecord) {
-            //TODO add new activity for adding record
+            //TODO realise list records
         }
         return super.onOptionsItemSelected(item);
     }

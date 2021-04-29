@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSStatService">
+        <activity android:name=".controller.AddRecordActivity"
+            android:parentActivityName=".controller.PictureDetailActivity">
+        </activity>
         <activity android:name=".PictureUpdateActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".controller.PictureDetailActivity">
         </activity>
         <activity android:name=".controller.PictureDetailActivity"
             android:parentActivityName=".MainActivity">
