@@ -15,6 +15,9 @@
         <activity android:name=".PictureUpdateActivity"
             android:parentActivityName=".controller.PictureDetailActivity">
         </activity>
+        <activity android:name=".controller.RecordsListActivity"
+            android:parentActivityName=".controller.PictureDetailActivity">
+        </activity>
         <activity android:name=".controller.PictureDetailActivity"
             android:parentActivityName=".MainActivity">
         </activity>

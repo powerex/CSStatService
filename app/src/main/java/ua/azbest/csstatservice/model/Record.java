@@ -1,9 +1,10 @@
 package ua.azbest.csstatservice.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Record {
+public class Record implements Serializable {
 
     private int id;
     private int pictureId;

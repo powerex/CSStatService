@@ -46,6 +46,14 @@ public class AddRecordActivity extends AppCompatActivity {
         buttonAddRecord = findViewById(R.id.buttonAddRecord);
         buttonCancelAdding = findViewById(R.id.buttonCancelAdding);
 
+
+        Calendar calendar = Calendar.getInstance();
+        int yy = 2021, mm = 1, dd = 1;
+        yy = calendar.get(Calendar.YEAR);
+        mm = calendar.get(Calendar.MONTH);
+        dd = calendar.get(Calendar.DAY_OF_MONTH);
+        chosenDate.setText(String.format("%02d/%02d/%04d", dd, mm, yy));
+
         pictureId = getIntent().getIntExtra("pictureDataId", 1);
         title = getIntent().getStringExtra("pictureDataTitle");
         pictureTitle.setText(title);

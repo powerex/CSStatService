@@ -40,7 +40,7 @@ public class PictureUpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_picture_update);
+        setContentView(R.layout.activity_update_picture);
 
         title = findViewById(R.id.editTextPictureTitleUpdate);
         crossStitchCount = findViewById(R.id.editTextCrossStitchCountUpdate);

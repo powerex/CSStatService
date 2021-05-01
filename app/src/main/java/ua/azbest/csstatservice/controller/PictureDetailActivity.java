@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import ua.azbest.csstatservice.AddPictureActivity;
 import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.PictureUpdateActivity;
 import ua.azbest.csstatservice.R;
@@ -29,6 +30,7 @@ public class PictureDetailActivity extends AppCompatActivity {
     FloatingActionButton addRecordButton;
     TextView textViewPictureTitle;
     TextView textViewCrossStitchLeft;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,10 @@ public class PictureDetailActivity extends AppCompatActivity {
             startActivity(intent);
         }
         if (item.getItemId() == R.id.viewPictureRecord) {
-            //TODO realise list records
+            Intent intent = new Intent(PictureDetailActivity.this, RecordsListActivity.class);
+            intent.putExtra("pictureId", picture.getId());
+            intent.putExtra("pictureTitle", picture.getTitle());
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
