@@ -12,7 +12,7 @@
         <activity android:name=".controller.AddRecordActivity"
             android:parentActivityName=".controller.PictureDetailActivity">
         </activity>
-        <activity android:name=".PictureUpdateActivity"
+        <activity android:name=".controller.PictureUpdateActivity"
             android:parentActivityName=".controller.PictureDetailActivity">
         </activity>
         <activity android:name=".controller.RecordsListActivity"
@@ -32,6 +32,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".controller.RecordUpdateActivity"
+            android:parentActivityName=".controller.RecordsListActivity">
+
         </activity>
     </application>
 

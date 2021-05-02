@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textViewPictureTitleInAddRecord"
+        android:id="@+id/textViewPictureTitleInAddRecordEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDayCrossStitches"
+        android:id="@+id/editTextDayCrossStitchesEdit"
         android:layout_width="0dp"
         android:textSize="20sp"
         android:layout_height="wrap_content"
@@ -34,10 +34,10 @@
         android:hint="Count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitleInAddRecord" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitleInAddRecordEdit" />
 
     <EditText
-        android:id="@+id/editTextChosenDate"
+        android:id="@+id/editTextChosenDateEdit"
         android:layout_width="0dp"
         android:textSize="20sp"
         android:layout_height="wrap_content"
@@ -49,22 +49,22 @@
         android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDayCrossStitches" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDayCrossStitchesEdit" />
 
     <Button
-        android:id="@+id/buttonAddRecord"
+        android:id="@+id/buttonApplyRecordEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="Add"
-        app:layout_constraintEnd_toStartOf="@+id/buttonCancelAdding"
+        android:text="@string/apply"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCancelEditing"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextChosenDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextChosenDateEdit" />
 
     <Button
-        android:id="@+id/buttonCancelAdding"
+        android:id="@+id/buttonCancelEditing"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -72,6 +72,6 @@
         android:layout_marginEnd="24dp"
         android:text="Cancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddRecord"
-        app:layout_constraintTop_toBottomOf="@+id/editTextChosenDate" />
+        app:layout_constraintStart_toEndOf="@+id/buttonApplyRecordEdit"
+        app:layout_constraintTop_toBottomOf="@+id/editTextChosenDateEdit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -108,4 +108,26 @@ public class PictureDaoImplementation extends SQLiteOpenHelper implements Pictur
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 
+    @Override
+    public Picture getPictureById(int id) {
+        final String query = "SELECT * FROM " + TABLE_NAME + " WHERE id=" + id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null) {
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.getCount() != 0) {
+            Picture picture;
+                while (cursor.moveToNext()) {
+                    picture = new Picture(
+                            Integer.parseInt(cursor.getString(0)),
+                            cursor.getString(1),
+                            Integer.parseInt(cursor.getString(2)),
+                            Picture.fromFormattedString(cursor.getString(3)),
+                            Picture.fromFormattedString(cursor.getString(4))
+                    );
+                    return picture;
+                }
+            }
+        }
+        return null;
+    }
 }

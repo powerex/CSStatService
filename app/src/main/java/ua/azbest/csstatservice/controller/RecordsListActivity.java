@@ -1,10 +1,18 @@
 package ua.azbest.csstatservice.controller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.R;
+import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.dao.RecordDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Record;
@@ -42,7 +52,7 @@ public class RecordsListActivity extends AppCompatActivity {
         myDB = new RecordDaoImplementation(RecordsListActivity.this);
         recordList = new ArrayList<>();
         storeDataInArray();
-        customRecordAdapter = new CustomRecordAdapter(RecordsListActivity.this, recordList);
+        customRecordAdapter = new CustomRecordAdapter(RecordsListActivity.this, this, recordList);
         recyclerView.setAdapter(customRecordAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(RecordsListActivity.this));
 
@@ -50,6 +60,13 @@ public class RecordsListActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setTitle(pictureTitle);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1)
+            recreate();
     }
 
     public void storeDataInArray() {
@@ -73,6 +90,45 @@ public class RecordsListActivity extends AppCompatActivity {
                 ));
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.record_list_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.deleteAllRecords) {
+            confirmDialog();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void confirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete All Records?");
+        builder.setMessage("Are you sure you want to delete ALL data?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(RecordsListActivity.this, "Delete", Toast.LENGTH_SHORT).show();
+                RecordDaoImplementation dao = new RecordDaoImplementation(RecordsListActivity.this);
+                dao.deleteAllData();
+                Intent intent = new Intent(RecordsListActivity.this, RecordsListActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 
 }

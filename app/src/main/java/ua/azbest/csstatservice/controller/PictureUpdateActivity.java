@@ -1,4 +1,4 @@
-package ua.azbest.csstatservice;
+package ua.azbest.csstatservice.controller;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.time.LocalDate;
 import java.util.Calendar;
 
+import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 
@@ -83,6 +84,7 @@ public class PictureUpdateActivity extends AppCompatActivity {
             picture.setStartDate(Picture.fromFormattedString(String.valueOf(startDate.getText())));
             picture.setWishDate(Picture.fromFormattedString(String.valueOf(wishDate.getText())));
             dao.updateData(String.valueOf(picture.getId()), picture);
+            finish();
         });
 
         deletePictureButton.setOnClickListener((v) -> {

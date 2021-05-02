@@ -77,7 +77,7 @@ public class AddRecordActivity extends AppCompatActivity {
         });
 
         buttonCancelAdding.setOnClickListener((v) -> {
-
+            finish();
         });
 
         chosenDate.setOnClickListener((v) -> {

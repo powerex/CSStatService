@@ -1,6 +1,5 @@
 package ua.azbest.csstatservice.controller;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,9 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import ua.azbest.csstatservice.AddPictureActivity;
-import ua.azbest.csstatservice.MainActivity;
-import ua.azbest.csstatservice.PictureUpdateActivity;
 import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.model.Picture;
 

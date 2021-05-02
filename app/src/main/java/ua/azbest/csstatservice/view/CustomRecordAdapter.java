@@ -1,5 +1,6 @@
 package ua.azbest.csstatservice.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,19 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.R;
-import ua.azbest.csstatservice.controller.PictureDetailActivity;
-import ua.azbest.csstatservice.controller.RecordsListActivity;
+import ua.azbest.csstatservice.controller.RecordUpdateActivity;
+import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.dao.RecordDaoImplementation;
 import ua.azbest.csstatservice.model.Record;
 
 public class CustomRecordAdapter extends RecyclerView.Adapter<CustomRecordAdapter.RecordHolder> {
 
     private Context context;
+    Activity activity;
     private List<Record> recordList;
 
-    public CustomRecordAdapter(Context context, List<Record> recordList) {
+    public CustomRecordAdapter(Activity activity, Context context, List<Record> recordList) {
+        this.activity = activity;
         this.context = context;
         this.recordList = recordList;
     }
@@ -40,7 +42,8 @@ public class CustomRecordAdapter extends RecyclerView.Adapter<CustomRecordAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecordHolder holder, int position) {
-        holder.textViewRecordId.setText(String.valueOf(recordList.get(position).getId()));
+//        holder.textViewRecordId.setText(String.valueOf(recordList.get(position).getId()));
+        holder.textViewRecordId.setText(String.valueOf(position+1));
         holder.textViewRecordCrossCount.setText(String.valueOf(recordList.get(position).getCrosses()));
         holder.textViewDate.setText(recordList.get(position).getStringDate());
         holder.imageButtonDelete.setOnClickListener((v)->{
@@ -48,9 +51,15 @@ public class CustomRecordAdapter extends RecyclerView.Adapter<CustomRecordAdapte
             myDB.deleteOneRecord(String.valueOf(recordList.get(position).getId()));
         });
         holder.imageButtonEdit.setOnClickListener((v) -> {
-//            Intent intent = new Intent(context, .class);
-//            intent.putExtra("recordData", recordList.get(position));
-//            context.startActivity(intent);
+            Intent intent = new Intent(context,
+                    RecordUpdateActivity.class);
+            PictureDaoImplementation pictureDao = new PictureDaoImplementation(context);
+            intent.putExtra("pictureName",
+                    pictureDao.getPictureById(
+                            recordList.get(position).getPictureId()).getTitle()
+            );
+            intent.putExtra("recordData", recordList.get(position));
+            activity.startActivityForResult(intent, 1);
         });
     }
 

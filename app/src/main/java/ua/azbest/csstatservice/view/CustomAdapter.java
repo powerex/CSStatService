@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ua.azbest.csstatservice.PictureUpdateActivity;
 import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.controller.PictureDetailActivity;
 import ua.azbest.csstatservice.model.Picture;

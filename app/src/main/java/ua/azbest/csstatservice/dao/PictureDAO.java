@@ -12,4 +12,5 @@ public interface PictureDAO {
     void updateData(String row_id, Picture picture);
     void deleteOneRecord(String rowId);
     void deleteAllData();
+    Picture getPictureById(int id);
 }
