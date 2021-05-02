@@ -63,7 +63,7 @@ public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordD
 
     @Override
     public Cursor readAllData() {
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_ID + " DESC";;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null) {
@@ -113,5 +113,11 @@ public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordD
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
+
+    @Override
+    public void deleteAllByPictureId(int pictureId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_PICTURE_ID + "=" + pictureId);
     }
 }

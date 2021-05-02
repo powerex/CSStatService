@@ -116,7 +116,7 @@ public class RecordsListActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(RecordsListActivity.this, "Delete", Toast.LENGTH_SHORT).show();
                 RecordDaoImplementation dao = new RecordDaoImplementation(RecordsListActivity.this);
-                dao.deleteAllData();
+                dao.deleteAllByPictureId(pictureId);
                 Intent intent = new Intent(RecordsListActivity.this, RecordsListActivity.class);
                 startActivity(intent);
                 finish();

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,7 +65,7 @@ public class PictureDetailActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.editPicture) {
             Intent intent = new Intent(this, PictureUpdateActivity.class);
             intent.putExtra("pictureData", picture);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         }
         if (item.getItemId() == R.id.viewPictureRecord) {
             Intent intent = new Intent(PictureDetailActivity.this, RecordsListActivity.class);
@@ -82,7 +83,15 @@ public class PictureDetailActivity extends AppCompatActivity {
             textViewPictureTitle.setText(picture.getTitle());
             textViewCrossStitchLeft.setText(String.valueOf(picture.getCrossStitchCount()));
         } else {
-            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            recreate();
         }
     }
 

@@ -47,13 +47,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         this.position = position;
-        holder.pictureId.setText(String.valueOf(gallery.get(position).getId()));
+        holder.pictureId.setText(String.valueOf(position + 1));
         holder.title.setText(gallery.get(position).getTitle());
         holder.crossStitchCount.setText(String.valueOf(gallery.get(position).getCrossStitchCount()));
         holder.startDate.setText(gallery.get(position).getStringStartDate());
         holder.wishDate.setText(gallery.get(position).getStringWishDate());
         holder.rowLayout.setOnClickListener((v) -> {
-//            Intent intent = new Intent(context, PictureUpdateActivity.class);
             Intent intent = new Intent(context, PictureDetailActivity.class);
             intent.putExtra("pictureData", gallery.get(position));
             context.startActivity(intent);

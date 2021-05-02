@@ -49,6 +49,7 @@ public class CustomRecordAdapter extends RecyclerView.Adapter<CustomRecordAdapte
         holder.imageButtonDelete.setOnClickListener((v)->{
             RecordDaoImplementation myDB = new RecordDaoImplementation(context);
             myDB.deleteOneRecord(String.valueOf(recordList.get(position).getId()));
+            activity.recreate();
         });
         holder.imageButtonEdit.setOnClickListener((v) -> {
             Intent intent = new Intent(context,

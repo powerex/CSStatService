@@ -13,5 +13,6 @@ public interface RecordDAO {
     Cursor readDataByPictureId(int pictureID);
     void updateData(String row_id, Record record);
     void deleteOneRecord(String rowId);
+    void deleteAllByPictureId(int pictureId);
     void deleteAllData();
 }
