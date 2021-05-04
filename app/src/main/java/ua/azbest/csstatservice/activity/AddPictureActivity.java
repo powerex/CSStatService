@@ -1,4 +1,4 @@
-package ua.azbest.csstatservice;
+package ua.azbest.csstatservice.activity;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -11,13 +11,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
+import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 

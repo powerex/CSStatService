@@ -9,32 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSStatService">
-        <activity android:name=".controller.AddRecordActivity"
-            android:parentActivityName=".controller.PictureDetailActivity">
+        <activity android:name=".activity.AddRecordActivity"
+            android:parentActivityName=".activity.PictureDetailActivity">
         </activity>
-        <activity android:name=".controller.PictureUpdateActivity"
-            android:parentActivityName=".controller.PictureDetailActivity">
+        <activity android:name=".activity.PictureUpdateActivity"
+            android:parentActivityName=".activity.PictureDetailActivity">
         </activity>
-        <activity android:name=".controller.RecordsListActivity"
-            android:parentActivityName=".controller.PictureDetailActivity">
+        <activity android:name=".activity.RecordsListActivity"
+            android:parentActivityName=".activity.PictureDetailActivity">
         </activity>
-        <activity android:name=".controller.PictureDetailActivity"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".activity.PictureDetailActivity">
         </activity>
         <activity
-            android:name=".AddPictureActivity"
+            android:name=".activity.AddPictureActivity"
             android:label="AddPicture"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.RecordUpdateActivity"
-            android:parentActivityName=".controller.RecordsListActivity">
+        <activity android:name=".activity.RecordUpdateActivity"
+            android:parentActivityName=".activity.RecordsListActivity">
 
         </activity>
     </application>

@@ -4,6 +4,8 @@ package ua.azbest.csstatservice.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ua.azbest.csstatservice.R;
-import ua.azbest.csstatservice.controller.PictureDetailActivity;
+import ua.azbest.csstatservice.activity.PictureDetailActivity;
 import ua.azbest.csstatservice.model.Picture;
+import ua.azbest.csstatservice.model.Settings;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
@@ -27,6 +30,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private List<Picture> gallery;
     Activity activity;
     private int position;
+    private SharedPreferences settings;
+    private static final String ACTIVE_PICTURE = "active_picture";
 
     Animation translate_anim;
 
@@ -55,9 +60,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.rowLayout.setOnClickListener((v) -> {
             Intent intent = new Intent(context, PictureDetailActivity.class);
             intent.putExtra("pictureData", gallery.get(position));
-            context.startActivity(intent);
+
+            int lastId = gallery.get(position).getId();
+            Settings.setActivePicture(context, lastId);
+
             activity.startActivityForResult(intent, 1);
         });
+
+    }
+
+    private void setLastActivePicture() {
 
     }
 
@@ -66,10 +78,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return gallery.size();
     }
 
-    public class MyViewHolder  extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView pictureId, title, crossStitchCount, startDate, wishDate;
         LinearLayout rowLayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             pictureId = itemView.findViewById(R.id.textViewPictureId);

@@ -1,4 +1,4 @@
-package ua.azbest.csstatservice.controller;
+package ua.azbest.csstatservice.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,9 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.R;
-import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.dao.RecordDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Record;

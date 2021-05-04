@@ -1,41 +1,32 @@
 package ua.azbest.csstatservice;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import ua.azbest.csstatservice.controller.PictureDetailActivity;
+import ua.azbest.csstatservice.activity.AddPictureActivity;
 import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.view.CustomAdapter;
@@ -43,10 +34,10 @@ import ua.azbest.csstatservice.view.CustomAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Main Activity";
+    private static final String ACTIVE_PICTURE = "Active Picture";
 
     RecyclerView recyclerView;
     FloatingActionButton addPictureButton;
-    FloatingActionButton activatePictureDetail;
     ImageView imageView;
     TextView textView;
 
@@ -73,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddPictureActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 

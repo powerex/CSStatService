@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ua.azbest.csstatservice.R;
-import ua.azbest.csstatservice.controller.RecordUpdateActivity;
+import ua.azbest.csstatservice.activity.RecordUpdateActivity;
 import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.dao.RecordDaoImplementation;
 import ua.azbest.csstatservice.model.Record;

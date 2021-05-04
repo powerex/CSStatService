@@ -1,4 +1,4 @@
-package ua.azbest.csstatservice.controller;
+package ua.azbest.csstatservice.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.model.Picture;
+import ua.azbest.csstatservice.model.Settings;
 
 public class PictureDetailActivity extends AppCompatActivity {
 
@@ -71,6 +72,11 @@ public class PictureDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(PictureDetailActivity.this, RecordsListActivity.class);
             intent.putExtra("pictureId", picture.getId());
             intent.putExtra("pictureTitle", picture.getTitle());
+            startActivity(intent);
+        }
+        if (item.getItemId() == R.id.viewPictureList) {
+            Intent intent = new Intent(this, MainActivity.class);
+            Settings.setActivePicture(this, 0);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

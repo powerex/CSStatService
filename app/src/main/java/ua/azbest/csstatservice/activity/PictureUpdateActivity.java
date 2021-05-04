@@ -1,4 +1,4 @@
-package ua.azbest.csstatservice.controller;
+package ua.azbest.csstatservice.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import java.util.Calendar;
 import ua.azbest.csstatservice.R;
 import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
+import ua.azbest.csstatservice.model.Settings;
 
 public class PictureUpdateActivity extends AppCompatActivity {
 

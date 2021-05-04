@@ -12,5 +12,9 @@
         android:title="Records"
         android:icon="@drawable/ic_list_records"
         app:showAsAction="never"/>
-
+    <item
+        android:id="@+id/viewPictureList"
+        android:title="All Pictures"
+        android:icon="@drawable/ic_format_list"
+        app:showAsAction="never"/>
 </menu>

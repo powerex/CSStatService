@@ -1,4 +1,4 @@
-package ua.azbest.csstatservice.controller;
+package ua.azbest.csstatservice.activity;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
