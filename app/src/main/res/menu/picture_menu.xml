@@ -16,5 +16,5 @@
         android:id="@+id/viewPictureList"
         android:title="All Pictures"
         android:icon="@drawable/ic_format_list"
-        app:showAsAction="never"/>
+        app:showAsAction="always"/>
 </menu>

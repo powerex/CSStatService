@@ -4,6 +4,8 @@ import android.database.Cursor;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Record;
 
@@ -14,5 +16,6 @@ public interface RecordDAO {
     void updateData(String row_id, Record record);
     void deleteOneRecord(String rowId);
     void deleteAllByPictureId(int pictureId);
+    List<Record> readRecordsByPictureId(int pictureID);
     void deleteAllData();
 }

@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Record;
 
 public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordDAO {
@@ -74,13 +78,31 @@ public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordD
 
     @Override
     public Cursor readDataByPictureId(int pictureID) {
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_PICTURE_ID + "=" + pictureID;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_PICTURE_ID + "=" + pictureID + " ORDER BY " + COLUMN_ID + " DESC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    @Override
+    public List<Record> readRecordsByPictureId(int pictureID) {
+        List<Record> recordList = new LinkedList<>();
+        Cursor cursor = readDataByPictureId(pictureID);
+        if (cursor.getCount() != 0) {
+            recordList.clear();
+            while (cursor.moveToNext()) {
+                recordList.add(new Record(
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2)),
+                        Picture.fromFormattedString(cursor.getString(3))
+                ));
+            }
+        }
+        return recordList;
     }
 
     @Override

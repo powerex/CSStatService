@@ -50,7 +50,7 @@ public class AddRecordActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int yy = 2021, mm = 1, dd = 1;
         yy = calendar.get(Calendar.YEAR);
-        mm = calendar.get(Calendar.MONTH);
+        mm = calendar.get(Calendar.MONTH) + 1;
         dd = calendar.get(Calendar.DAY_OF_MONTH);
         chosenDate.setText(String.format("%02d/%02d/%04d", dd, mm, yy));
 
