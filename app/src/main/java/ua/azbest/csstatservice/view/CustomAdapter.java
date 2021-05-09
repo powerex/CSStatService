@@ -59,7 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.wishDate.setText(gallery.get(position).getStringWishDate());
         holder.rowLayout.setOnClickListener((v) -> {
             Intent intent = new Intent(context, PictureDetailActivity.class);
-            intent.putExtra("pictureData", gallery.get(position));
+            intent.putExtra("pictureId", gallery.get(position).getId());
 
             int lastId = gallery.get(position).getId();
             Settings.setActivePicture(context, lastId);

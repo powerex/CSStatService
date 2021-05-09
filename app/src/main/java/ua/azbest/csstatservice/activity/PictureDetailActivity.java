@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.R;
+import ua.azbest.csstatservice.dao.PictureDaoImplementation;
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Settings;
 
@@ -43,14 +44,15 @@ public class PictureDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddRecordActivity.class);
             intent.putExtra("pictureDataId", picture.getId());
             intent.putExtra("pictureDataTitle", picture.getTitle());
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         });
 
         getAndSetIntentData();
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            ab.setTitle(picture.getTitle());
+//            if (picture != null)
+                ab.setTitle(picture.getTitle());
         }
     }
 
@@ -72,7 +74,8 @@ public class PictureDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(PictureDetailActivity.this, RecordsListActivity.class);
             intent.putExtra("pictureId", picture.getId());
             intent.putExtra("pictureTitle", picture.getTitle());
-            startActivity(intent);
+//            startActivity(intent);
+            startActivityForResult(intent, picture.getId());
         }
         if (item.getItemId() == R.id.viewPictureList) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -83,8 +86,10 @@ public class PictureDetailActivity extends AppCompatActivity {
     }
 
     private void getAndSetIntentData() {
-        if (getIntent().hasExtra("pictureData")) {
-            picture = (Picture)getIntent().getSerializableExtra("pictureData");
+        if (getIntent().hasExtra("pictureId")) {
+            PictureDaoImplementation dao = new PictureDaoImplementation(this);
+
+            picture = dao.getPictureById(getIntent().getIntExtra("pictureId", 0));
 
             textViewPictureTitle.setText(picture.getTitle());
             textViewCrossStitchLeft.setText(String.valueOf(picture.getCrossStitchCount()));
@@ -96,8 +101,17 @@ public class PictureDetailActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            recreate();
+        if (requestCode != 0) {
+        /*    PictureDaoImplementation dao = new PictureDaoImplementation(this);
+            picture = dao.getPictureById(requestCode);
+            textViewPictureTitle.setText(picture.getTitle());
+            textViewCrossStitchLeft.setText(String.valueOf(picture.getCrossStitchCount()));
+            ActionBar ab = getSupportActionBar();
+            if (ab != null) {
+                if (picture != null)
+                    ab.setTitle(picture.getTitle());
+            }*/
+          recreate();
         }
     }
 

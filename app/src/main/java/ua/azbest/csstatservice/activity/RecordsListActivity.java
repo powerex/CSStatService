@@ -56,6 +56,7 @@ public class RecordsListActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
+            ab.setHomeButtonEnabled(true);
             ab.setTitle(pictureTitle);
         }
     }
@@ -88,6 +89,13 @@ public class RecordsListActivity extends AppCompatActivity {
                 ));
             }
         }
+        getIntent().putExtra("pictureId", pictureId);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(pictureId);
+        super.onBackPressed();
     }
 
     @Override
@@ -99,10 +107,16 @@ public class RecordsListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.deleteAllRecords) {
-            confirmDialog();
+        switch (item.getItemId()) {
+            case R.id.deleteAllRecords:
+                confirmDialog();
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public void confirmDialog() {

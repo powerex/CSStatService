@@ -36,7 +36,7 @@ public class LaunchActivity extends AppCompatActivity {
             PictureDaoImplementation dao = new PictureDaoImplementation(LaunchActivity.this);
             Picture picture = dao.getPictureById(activePicture);
             if (picture != null) {
-                intent.putExtra("pictureData", picture);
+                intent.putExtra("pictureId", activePicture);
                 startActivity(intent);
             } else
                 startBaseActivity();
