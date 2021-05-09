@@ -130,17 +130,17 @@ public class PictureDetailActivity extends AppCompatActivity {
             List<Record> recordList = recordDao.readRecordsByPictureId(picture.getId());
             statistic = new Statistic(picture, recordList);
 
-            textViewCrossStitchLeft.setText("Crosses left " + statistic.getLeft());
-            textViewTotalCrosses.setText("Total " + String.valueOf(statistic.getTotal()));
-            textViewPercentCrossesLeft.setText("Percent left " + String.format("%05.2f",statistic.getPercentLeft()) + "%");
-            textViewNeedPerDay.setText("Need crosses per day " + statistic.getCrossesPerDay());
-            textViewAveragePerDay.setText("Average Per Day " + statistic.getAveragePerDay());
-            textViewDaysLeft.setText("Days Left " + statistic.getDaysLeft());
-            textViewApproximateFinishDate.setText("Approximate finish date " + statistic.getApproximateFinishDate());
-            textViewAllCrosses.setText("All crosses " + picture.getCrossStitchCount());
+            textViewCrossStitchLeft.setText(String.valueOf(statistic.getLeft()));
+            textViewTotalCrosses.setText(String.valueOf(statistic.getTotal()));
+            textViewPercentCrossesLeft.setText(String.format("%05.2f",statistic.getPercentLeft()) + "%");
+            textViewNeedPerDay.setText(String.valueOf(statistic.getCrossesPerDay()));
+            textViewAveragePerDay.setText(String.valueOf(statistic.getAveragePerDay()));
+            textViewDaysLeft.setText(String.valueOf(statistic.getDaysLeft()));
+            textViewApproximateFinishDate.setText(statistic.getApproximateFinishDate());
+            textViewAllCrosses.setText(String.valueOf(picture.getCrossStitchCount()));
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            textViewPictureWishDate.setText("Wish date " + formatter.format(picture.getWishDate()));
+            textViewPictureWishDate.setText(formatter.format(picture.getWishDate()));
 
 
         } else {

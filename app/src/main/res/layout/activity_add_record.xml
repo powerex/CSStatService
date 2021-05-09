@@ -31,7 +31,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:inputType="number"
-        android:hint="Count"
+        android:hint="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitleInAddRecord" />
