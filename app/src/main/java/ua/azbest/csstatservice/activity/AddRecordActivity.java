@@ -43,6 +43,7 @@ public class AddRecordActivity extends AppCompatActivity {
         pictureTitle = findViewById(R.id.textViewPictureTitleInAddRecord);
         crossStitchCount = findViewById(R.id.editTextDayCrossStitches);
         crossStitchCount.setText("0");
+        crossStitchCount.setSelectAllOnFocus(true);
         chosenDate = findViewById(R.id.editTextChosenDate);
         buttonAddRecord = findViewById(R.id.buttonAddRecord);
         buttonCancelAdding = findViewById(R.id.buttonCancelAdding);

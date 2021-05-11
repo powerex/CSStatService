@@ -59,19 +59,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewCrossStitchLeft" />
 
     <TextView
-        android:id="@+id/textViewPercentCrossesLeft"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewPercentCrossesLeftTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrosses" />
-
-    <TextView
         android:id="@+id/textViewNeedPerDay"
         android:layout_width="0dp"
         android:layout_height="18dp"
@@ -82,7 +69,7 @@
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewNeedPerDayTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPercentCrossesLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBarPercentsDone" />
 
     <TextView
         android:id="@+id/textViewAveragePerDay"
@@ -184,8 +171,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="Percent left"
-        app:layout_constraintEnd_toStartOf="@+id/textViewPercentCrossesLeft"
+        android:text="Percent Done"
+        app:layout_constraintBottom_toTopOf="@+id/textViewNeedPerDayTitle"
+        app:layout_constraintEnd_toStartOf="@+id/progressBarPercentsDone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrossesTitle" />
 
@@ -198,7 +186,7 @@
         android:text="Need crosses per day"
         app:layout_constraintEnd_toStartOf="@+id/textViewNeedPerDay"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPercentCrossesLeftTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBarPercentsDone" />
 
     <TextView
         android:id="@+id/textViewAveragePerDayTitle"
@@ -254,4 +242,29 @@
         app:layout_constraintEnd_toStartOf="@+id/textViewPictureWishDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAllCrossestitle" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPercentsDone"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewPercentCrossesLeftTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrossesTitle" />
+
+    <TextView
+        android:id="@+id/textViewPercentShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="%"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarPercentsDone"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarPercentsDone"
+        app:layout_constraintStart_toStartOf="@+id/progressBarPercentsDone"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrosses" />
 </androidx.constraintlayout.widget.ConstraintLayout>

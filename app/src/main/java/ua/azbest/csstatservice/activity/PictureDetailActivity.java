@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,13 +41,15 @@ public class PictureDetailActivity extends AppCompatActivity {
     TextView textViewPictureTitle;
     TextView textViewCrossStitchLeft;
     TextView textViewTotalCrosses;
-    TextView textViewPercentCrossesLeft;
+//    TextView textViewPercentCrossesLeft;
     TextView textViewNeedPerDay;
     TextView textViewAveragePerDay;
     TextView textViewDaysLeft;
     TextView textViewApproximateFinishDate;
     TextView textViewAllCrosses;
     TextView textViewPictureWishDate;
+    TextView textViewPercentShow;
+    ProgressBar progressBarPercentsDone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,17 @@ public class PictureDetailActivity extends AppCompatActivity {
         // stat text views
         textViewCrossStitchLeft = findViewById(R.id.textViewCrossStitchLeft);
         textViewTotalCrosses = findViewById(R.id.textViewTotalCrosses);
-        textViewPercentCrossesLeft = findViewById(R.id.textViewPercentCrossesLeft);
+//        textViewPercentCrossesLeft = findViewById(R.id.textViewPercentCrossesLeft);
+        progressBarPercentsDone = findViewById(R.id.progressBarPercentsDone);
+        progressBarPercentsDone.setMin(0);
+        progressBarPercentsDone.setMax(100);
         textViewNeedPerDay = findViewById(R.id.textViewNeedPerDay);
         textViewAveragePerDay = findViewById(R.id.textViewAveragePerDay);
         textViewDaysLeft = findViewById(R.id.textViewDaysLeft);
         textViewApproximateFinishDate = findViewById(R.id.textViewApproximateFinishDate);
         textViewAllCrosses = findViewById(R.id.textViewAllCrosses);
         textViewPictureWishDate = findViewById(R.id.textViewPictureWishDate);
+        textViewPercentShow = findViewById(R.id.textViewPercentShow);
 
 
         addRecordButton.setOnClickListener((v) -> {
@@ -132,7 +139,9 @@ public class PictureDetailActivity extends AppCompatActivity {
 
             textViewCrossStitchLeft.setText(String.valueOf(statistic.getLeft()));
             textViewTotalCrosses.setText(String.valueOf(statistic.getTotal()));
-            textViewPercentCrossesLeft.setText(String.format("%05.2f",statistic.getPercentLeft()) + "%");
+//            textViewPercentCrossesLeft.setText(String.format("%05.2f",statistic.getPercentLeft()) + "%");
+            progressBarPercentsDone.setProgress((int)statistic.getPercentDone());
+            textViewPercentShow.setText((int)statistic.getPercentDone() + "%");
             textViewNeedPerDay.setText(String.valueOf(statistic.getCrossesPerDay()));
             textViewAveragePerDay.setText(String.valueOf(statistic.getAveragePerDay()));
             textViewDaysLeft.setText(String.valueOf(statistic.getDaysLeft()));
