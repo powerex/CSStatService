@@ -2,6 +2,7 @@ package ua.azbest.csstatservice.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,9 +17,19 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.pm.PackageInfoCompat;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.renderer.YAxisRenderer;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import ua.azbest.csstatservice.MainActivity;
@@ -29,6 +40,7 @@ import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Record;
 import ua.azbest.csstatservice.model.Settings;
 import ua.azbest.csstatservice.model.Statistic;
+import ua.azbest.csstatservice.model.StatisticCharacteristic;
 
 public class PictureDetailActivity extends AppCompatActivity {
 
@@ -50,6 +62,8 @@ public class PictureDetailActivity extends AppCompatActivity {
     TextView textViewPictureWishDate;
     TextView textViewPercentShow;
     ProgressBar progressBarPercentsDone;
+    BarChart barChart;
+    BarChart barChartSum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +86,8 @@ public class PictureDetailActivity extends AppCompatActivity {
         textViewAllCrosses = findViewById(R.id.textViewAllCrosses);
         textViewPictureWishDate = findViewById(R.id.textViewPictureWishDate);
         textViewPercentShow = findViewById(R.id.textViewPercentShow);
+        barChart = findViewById(R.id.barChart);
+        barChartSum = findViewById(R.id.barChartSum);
 
 
         addRecordButton.setOnClickListener((v) -> {
@@ -150,6 +166,56 @@ public class PictureDetailActivity extends AppCompatActivity {
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             textViewPictureWishDate.setText(formatter.format(picture.getWishDate()));
+
+            ArrayList<String> labelNames = new ArrayList<>();
+            labelNames.add("Mon");
+            labelNames.add("Tue");
+            labelNames.add("Wed");
+            labelNames.add("Thu");
+            labelNames.add("Fri");
+            labelNames.add("Sat");
+            labelNames.add("Sun");
+            ArrayList<BarEntry> datas = new ArrayList<>();
+            ArrayList<BarEntry> datasSum = new ArrayList<>();
+            for (int i=0; i<7; ++i) {
+                datas.add(new BarEntry(i, (float) statistic.getCharacteristicByWeekday(StatisticCharacteristic.AVERAGE, i)));
+                datasSum.add(new BarEntry(i, (float) statistic.getCharacteristicByWeekday(StatisticCharacteristic.SUM, i)));
+            }
+
+            BarDataSet barDataSet = new BarDataSet(datas, "Weekdays");
+            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+            barDataSet.setValueTextSize(16f);
+
+            BarData barData = new BarData(barDataSet);
+            barData.setBarWidth(1f);
+
+            XAxis xAxis = barChart.getXAxis();
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(labelNames));
+            barChart.getAxisLeft().setAxisMinimum(0);
+            barChart.getAxisRight().setAxisMinimum(0);
+
+            barChart.setFitBars(true);
+            barChart.setData(barData);
+            barChart.getDescription().setText("Average Per Weekday");
+            barChart.animateY(2000);
+
+            BarDataSet barDataSetSum = new BarDataSet(datasSum, "Weekdays");
+            barDataSetSum.setColors(ColorTemplate.MATERIAL_COLORS);
+            barDataSetSum.setValueTextSize(12f);
+
+            BarData barDataSum = new BarData(barDataSetSum);
+            barDataSum.setBarWidth(1f);
+
+            XAxis xAxisSum = barChartSum.getXAxis();
+            xAxisSum.setValueFormatter(new IndexAxisValueFormatter(labelNames));
+            barChartSum.getAxisLeft().setAxisMinimum(0);
+            barChartSum.getAxisRight().setAxisMinimum(0);
+
+            barChartSum.setFitBars(true);
+            barChartSum.setData(barDataSum);
+            barChartSum.getDescription().setText("Sum Per Weekday");
+            barChartSum.animateY(2000);
+
 
 
         } else {

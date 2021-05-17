@@ -1,270 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonRecordAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_white" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewPictureTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="Picture Title"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewLeftTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonRecordAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_white" />
 
-    <TextView
-        android:id="@+id/textViewCrossStitchLeft"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:textAlignment="textEnd"
-        android:text="CrossStitch Left"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewLeftTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitle" />
+        <TextView
+            android:id="@+id/textViewPictureTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="Picture Title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewLeftTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewTotalCrosses"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:textAlignment="textEnd"
-        android:text="Total Crosses"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalCrossesTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCrossStitchLeft" />
+        <TextView
+            android:id="@+id/textViewCrossStitchLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="CrossStitch Left"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewLeftTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitle" />
 
-    <TextView
-        android:id="@+id/textViewNeedPerDay"
-        android:layout_width="0dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewNeedPerDayTitle"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarPercentsDone" />
+        <TextView
+            android:id="@+id/textViewTotalCrosses"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="Total Crosses"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewTotalCrossesTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCrossStitchLeft" />
 
-    <TextView
-        android:id="@+id/textViewAveragePerDay"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewAveragePerDayTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNeedPerDay" />
+        <TextView
+            android:id="@+id/textViewNeedPerDay"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewNeedPerDayTitle"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPercentsDone" />
 
-    <TextView
-        android:id="@+id/textViewDaysLeft"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewDaysLeftTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAveragePerDay" />
+        <TextView
+            android:id="@+id/textViewAveragePerDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewAveragePerDayTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNeedPerDay" />
 
-    <TextView
-        android:id="@+id/textViewApproximateFinishDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewApproximateFinishDateTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDaysLeft" />
+        <TextView
+            android:id="@+id/textViewDaysLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewDaysLeftTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAveragePerDay" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="321dp" />
+        <TextView
+            android:id="@+id/textViewApproximateFinishDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewApproximateFinishDateTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDaysLeft" />
 
-    <TextView
-        android:id="@+id/textViewAllCrosses"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewAllCrossestitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewApproximateFinishDate" />
+        <androidx.constraintlayout.widget.Barrier
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            tools:layout_editor_absoluteX="109dp"
+            tools:layout_editor_absoluteY="321dp" />
 
-    <TextView
-        android:id="@+id/textViewPictureWishDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAllCrosses" />
+        <TextView
+            android:id="@+id/textViewAllCrosses"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewAllCrossestitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewApproximateFinishDate" />
 
-    <TextView
-        android:id="@+id/textViewLeftTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Cross Stitch Left"
-        app:layout_constraintEnd_toStartOf="@+id/textViewCrossStitchLeft"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitle" />
+        <TextView
+            android:id="@+id/textViewPictureWishDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAllCrosses" />
 
-    <TextView
-        android:id="@+id/textViewTotalCrossesTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Total Crosses"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTotalCrosses"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLeftTitle" />
+        <TextView
+            android:id="@+id/textViewLeftTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Cross Stitch Left"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCrossStitchLeft"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPictureTitle" />
 
-    <TextView
-        android:id="@+id/textViewPercentCrossesLeftTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Percent Done"
-        app:layout_constraintBottom_toTopOf="@+id/textViewNeedPerDayTitle"
-        app:layout_constraintEnd_toStartOf="@+id/progressBarPercentsDone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrossesTitle" />
+        <TextView
+            android:id="@+id/textViewTotalCrossesTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Total Crosses"
+            app:layout_constraintEnd_toStartOf="@+id/textViewTotalCrosses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLeftTitle" />
 
-    <TextView
-        android:id="@+id/textViewNeedPerDayTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Need crosses per day"
-        app:layout_constraintEnd_toStartOf="@+id/textViewNeedPerDay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarPercentsDone" />
+        <TextView
+            android:id="@+id/textViewPercentCrossesLeftTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Percent Done"
+            app:layout_constraintBottom_toTopOf="@+id/textViewNeedPerDayTitle"
+            app:layout_constraintEnd_toStartOf="@+id/progressBarPercentsDone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrossesTitle" />
 
-    <TextView
-        android:id="@+id/textViewAveragePerDayTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Average Per Day"
-        app:layout_constraintEnd_toStartOf="@+id/textViewAveragePerDay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNeedPerDayTitle" />
+        <TextView
+            android:id="@+id/textViewNeedPerDayTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Need crosses per day"
+            app:layout_constraintEnd_toStartOf="@+id/textViewNeedPerDay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPercentsDone" />
 
-    <TextView
-        android:id="@+id/textViewDaysLeftTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Days Left"
-        app:layout_constraintEnd_toStartOf="@+id/textViewDaysLeft"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAveragePerDayTitle" />
+        <TextView
+            android:id="@+id/textViewAveragePerDayTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Average Per Day"
+            app:layout_constraintEnd_toStartOf="@+id/textViewAveragePerDay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNeedPerDayTitle" />
 
-    <TextView
-        android:id="@+id/textViewApproximateFinishDateTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Approximate finish date"
-        app:layout_constraintEnd_toStartOf="@+id/textViewApproximateFinishDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDaysLeftTitle" />
+        <TextView
+            android:id="@+id/textViewDaysLeftTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Days Left"
+            app:layout_constraintEnd_toStartOf="@+id/textViewDaysLeft"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAveragePerDayTitle" />
 
-    <TextView
-        android:id="@+id/textViewAllCrossestitle"
-        android:layout_width="0dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="All Crosses"
-        app:layout_constraintEnd_toStartOf="@+id/textViewAllCrosses"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewApproximateFinishDateTitle" />
+        <TextView
+            android:id="@+id/textViewApproximateFinishDateTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Approximate finish date"
+            app:layout_constraintEnd_toStartOf="@+id/textViewApproximateFinishDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDaysLeftTitle" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Wish Date"
-        app:layout_constraintEnd_toStartOf="@+id/textViewPictureWishDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAllCrossestitle" />
+        <TextView
+            android:id="@+id/textViewAllCrossestitle"
+            android:layout_width="0dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="All Crosses"
+            app:layout_constraintEnd_toStartOf="@+id/textViewAllCrosses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewApproximateFinishDateTitle" />
 
-    <ProgressBar
-        android:id="@+id/progressBarPercentsDone"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:progressDrawable="@drawable/circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewPercentCrossesLeftTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrossesTitle" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Wish Date"
+            app:layout_constraintEnd_toStartOf="@+id/textViewPictureWishDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAllCrossestitle" />
 
-    <TextView
-        android:id="@+id/textViewPercentShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="%"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarPercentsDone"
-        app:layout_constraintEnd_toEndOf="@+id/progressBarPercentsDone"
-        app:layout_constraintStart_toStartOf="@+id/progressBarPercentsDone"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrosses" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progressBarPercentsDone"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/circle"
+            android:rotation="-90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewPercentCrossesLeftTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrossesTitle"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/textViewPercentShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarPercentsDone"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarPercentsDone"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPercentsDone"
+            app:layout_constraintTop_toTopOf="@+id/progressBarPercentsDone" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPictureWishDate" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChartSum"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barChart" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

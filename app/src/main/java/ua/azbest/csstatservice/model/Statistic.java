@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.DAYS;
-import static java.time.temporal.ChronoUnit.WEEKS;
 
 public class Statistic {
 
-    private Picture picture;
-    private List<Record> list;
-    private Data data;
+    private final Picture picture;
+    private final List<Record> list;
+    private final Data data;
 
     public Statistic(Picture picture, List<Record> list) {
         this.picture = picture;
@@ -33,6 +32,10 @@ public class Statistic {
         return data.getLeft();
     }
 
+    public Data getData() {
+        return data;
+    }
+
     private Data calcData() {
         Data result = new Data();
 
@@ -43,30 +46,45 @@ public class Statistic {
             result.setLastDay(LocalDate.now());
         } else {
             result.setTotal(
-                    list.stream().collect(Collectors.summingInt(Record::getCrosses)));
+                    list.stream().mapToInt(Record::getCrosses).sum());
             result.setLeft(
                     picture.getCrossStitchCount() - result.getTotal());
             result.setFirstDay(
-                    list.stream().min(Comparator.comparing(Record::getDate)).get().getDate()
+                    list.stream().min(Comparator.comparing(Record::getDate)).orElse(null).getDate()
             );
             result.setLastDay(
-                    list.stream().max(Comparator.comparing(Record::getDate)).get().getDate()
+                    list.stream().max(Comparator.comparing(Record::getDate)).orElse(null).getDate()
             );
 
+            result.setAllCharacteristics(calcCharacteristics(list));
             result.setCharacteristicsByWeekday(0, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.MONDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.MONDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
             result.setCharacteristicsByWeekday(1, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.TUESDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.TUESDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
             result.setCharacteristicsByWeekday(2, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.WEDNESDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.WEDNESDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
             result.setCharacteristicsByWeekday(3, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.THURSDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.THURSDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
             result.setCharacteristicsByWeekday(4, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.FRIDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.FRIDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
             result.setCharacteristicsByWeekday(5, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.SATURDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.SATURDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
             result.setCharacteristicsByWeekday(6, calcCharacteristics(list.stream()
-                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.SUNDAY)).collect(Collectors.toList())));
+                    .filter(rec -> rec.getDate().getDayOfWeek().equals(DayOfWeek.SUNDAY))
+                    .filter(rec -> rec.getCrosses() < 10000)
+                    .collect(Collectors.toList())));
         }
         return result;
     }
@@ -86,7 +104,7 @@ public class Statistic {
     public int getAveragePerDay() {
         int days = (int) DAYS.between(data.getFirstDay(), data.getLastDay());
         if (days != 0)
-            return (int) (getTotal() / (days + 1));
+            return getTotal() / (days + 1);
         else if (list.size() == 0)
             return 0;
         //TODO re-calc if list contains few records in one single day
@@ -113,7 +131,19 @@ public class Statistic {
         return formatter.format(date);
     }
 
-    private class Characteristics {
+    public double getCharacteristicByWeekday(StatisticCharacteristic sch, int weekday) {
+        switch (sch) {
+            case COUNT: return data.characteristicsArrayByWeekday[weekday].count;
+            case SUM: return data.characteristicsArrayByWeekday[weekday].sum;
+            case VAR: return data.characteristicsArrayByWeekday[weekday].var;
+            case AVERAGE: return data.characteristicsArrayByWeekday[weekday].average;
+            case SIGMA: return data.characteristicsArrayByWeekday[weekday].sigma;
+            case DELTA: return data.characteristicsArrayByWeekday[weekday].delta;
+        }
+        return 0;
+    }
+
+    private static class Characteristics {
         public int count;
         public int sum;
         public double average;
@@ -131,16 +161,25 @@ public class Statistic {
         }
     }
 
-    private class Data {
+    private static class Data {
 
         int total;
         int left;
         LocalDate firstDay;
         LocalDate lastDay;
         Characteristics[] characteristicsArrayByWeekday = new Characteristics[7];
+        Characteristics allCharacteristics;
 
         public Characteristics[] getCharacteristicsArrayByWeekday() {
             return characteristicsArrayByWeekday;
+        }
+
+        public Characteristics getAllCharacteristics() {
+            return allCharacteristics;
+        }
+
+        public void setAllCharacteristics(Characteristics allCharacteristics) {
+            this.allCharacteristics = allCharacteristics;
         }
 
         public void setCharacteristicsArrayByWeekday(Characteristics[] characteristicsArrayByWeekday) {
@@ -191,7 +230,7 @@ public class Statistic {
     @Contract("_ -> new")
     private @NotNull Characteristics calcCharacteristics(@NotNull List<Record> records) {
         int count = records.size();
-        int sum = records.stream().collect(Collectors.summingInt(Record::getCrosses));
+        int sum = records.stream().mapToInt(Record::getCrosses).sum();
         double mean = (double) sum / records.size();
         double variance;
         if (count < 2)
@@ -209,7 +248,7 @@ public class Statistic {
     }
 
     private static double getMean(@NotNull List<Record> records) {
-        int sum = records.stream().collect(Collectors.summingInt(Record::getCrosses));
+        int sum = records.stream().mapToInt(Record::getCrosses).sum();
         return (double) sum / records.size();
     }
 

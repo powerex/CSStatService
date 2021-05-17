@@ -13,6 +13,7 @@ public interface RecordDAO {
     void addRecord(@NotNull Record record);
     Cursor readAllData();
     Cursor readDataByPictureId(int pictureID);
+    Cursor readDataByPictureIdIgnoreBig(int pictureID);
     void updateData(String row_id, Record record);
     void deleteOneRecord(String rowId);
     void deleteAllByPictureId(int pictureId);

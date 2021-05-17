@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_themble"
-        android:logo="@mipmap/ic_launcher_themble"
+        android:logo="@drawable/ic_themble"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSStatService">
         <activity android:name=".activity.AddRecordActivity"

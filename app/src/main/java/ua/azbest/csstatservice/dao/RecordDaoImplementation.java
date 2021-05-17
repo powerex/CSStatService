@@ -88,6 +88,17 @@ public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordD
     }
 
     @Override
+    public Cursor readDataByPictureIdIgnoreBig(int pictureID) {
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_PICTURE_ID + "=" + pictureID + " AND " + COLUMN_CROSSES + "<10000" + " ORDER BY " + COLUMN_ID + " DESC";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    @Override
     public List<Record> readRecordsByPictureId(int pictureID) {
         List<Record> recordList = new LinkedList<>();
         Cursor cursor = readDataByPictureId(pictureID);
