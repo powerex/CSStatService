@@ -243,7 +243,7 @@ public class Statistic {
             variance = sumSqr / (count - 1);
         }
         double stdDev = Math.sqrt(variance);
-        double delta = sum / stdDev;
+        double delta = stdDev / sum;
         return new Characteristics(count, sum, mean, variance, stdDev, delta);
     }
 

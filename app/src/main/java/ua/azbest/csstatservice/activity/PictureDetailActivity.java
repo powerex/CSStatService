@@ -176,9 +176,21 @@ public class PictureDetailActivity extends AppCompatActivity {
             labelNames.add("Sat");
             labelNames.add("Sun");
             ArrayList<BarEntry> datas = new ArrayList<>();
+//            ArrayList<BarEntry> datasDeltaPlus = new ArrayList<>();
+//            ArrayList<BarEntry> datasDeltaMinus = new ArrayList<>();
             ArrayList<BarEntry> datasSum = new ArrayList<>();
             for (int i=0; i<7; ++i) {
-                datas.add(new BarEntry(i, (float) statistic.getCharacteristicByWeekday(StatisticCharacteristic.AVERAGE, i)));
+                float ave = (float) statistic.getCharacteristicByWeekday(StatisticCharacteristic.AVERAGE, i);
+                float delta = (float) statistic.getCharacteristicByWeekday(StatisticCharacteristic.DELTA, i);
+                datas.add(new BarEntry(i, new float[] {
+                        ave/*,
+                        ave*(1-delta),
+                        ave*(1+delta)*/
+                }));
+                /*datasDeltaPlus.add(new BarEntry(i, (float) (statistic.getCharacteristicByWeekday(StatisticCharacteristic.AVERAGE, i) +
+                                                            statistic.getCharacteristicByWeekday(StatisticCharacteristic.DELTA, i))));
+                datasDeltaMinus.add(new BarEntry(i, (float) (statistic.getCharacteristicByWeekday(StatisticCharacteristic.AVERAGE, i) -
+                        statistic.getCharacteristicByWeekday(StatisticCharacteristic.DELTA, i))));*/
                 datasSum.add(new BarEntry(i, (float) statistic.getCharacteristicByWeekday(StatisticCharacteristic.SUM, i)));
             }
 
@@ -196,6 +208,9 @@ public class PictureDetailActivity extends AppCompatActivity {
 
             barChart.setFitBars(true);
             barChart.setData(barData);
+
+//            barChart.setData(new BarData(new BarDataSet(datasDeltaPlus, "Weekdays")));
+
             barChart.getDescription().setText("Average Per Weekday");
             barChart.animateY(2000);
 
