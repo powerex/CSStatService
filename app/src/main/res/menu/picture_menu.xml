@@ -6,15 +6,20 @@
         android:id="@+id/editPicture"
         android:title="Edit"
         android:icon="@drawable/ic_edit_picture"
-        app:showAsAction="never"/>
+        app:showAsAction="always"/>
     <item
         android:id="@+id/viewPictureRecord"
         android:title="Records"
         android:icon="@drawable/ic_list_records"
-        app:showAsAction="never"/>
+        app:showAsAction="always"/>
     <item
         android:id="@+id/viewPictureList"
         android:title="All Pictures"
         android:icon="@drawable/ic_format_list"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/storeToGoogleSheets"
+        android:title="Upload"
+        android:icon="@drawable/ic_baseline_cloud_upload_24"
         app:showAsAction="always"/>
 </menu>

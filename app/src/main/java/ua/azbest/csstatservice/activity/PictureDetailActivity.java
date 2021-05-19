@@ -30,7 +30,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import ua.azbest.csstatservice.MainActivity;
 import ua.azbest.csstatservice.R;
@@ -115,30 +127,78 @@ public class PictureDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.editPicture) {
-            Intent intent = new Intent(this, PictureUpdateActivity.class);
-            intent.putExtra("pictureData", picture);
-            startActivityForResult(intent, 1);
-        }
-        if (item.getItemId() == R.id.viewPictureRecord) {
-            Intent intent = new Intent(PictureDetailActivity.this, RecordsListActivity.class);
-            intent.putExtra("pictureId", picture.getId());
-            intent.putExtra("pictureTitle", picture.getTitle());
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.editPicture:
+                intent = new Intent(this, PictureUpdateActivity.class);
+                intent.putExtra("pictureData", picture);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.viewPictureRecord:
+                intent = new Intent(PictureDetailActivity.this, RecordsListActivity.class);
+                intent.putExtra("pictureId", picture.getId());
+                intent.putExtra("pictureTitle", picture.getTitle());
 //            startActivity(intent);
-            startActivityForResult(intent, picture.getId());
-        }
-        if (item.getItemId() == R.id.viewPictureList) {
-            Intent intent = new Intent(this, MainActivity.class);
-            Settings.setActivePicture(this, 0);
-            startActivity(intent);
-        }
-        if (item.getItemId() == R.id.home) {
-            Toast.makeText(this, "Home-home", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            Settings.setActivePicture(this, 0);
-            startActivity(intent);
+                startActivityForResult(intent, picture.getId());
+                break;
+            case R.id.viewPictureList:
+                intent = new Intent(this, MainActivity.class);
+                Settings.setActivePicture(this, 0);
+                startActivity(intent);
+                break;
+            case R.id.home:
+                Toast.makeText(this, "Home-home", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, MainActivity.class);
+                Settings.setActivePicture(this, 0);
+                startActivity(intent);
+                break;
+            case R.id.storeToGoogleSheets:
+                uploadData();
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void uploadData() {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                "https://script.google.com/macros/s/AKfycbzpNU9t6ziJUwspyE18gyLDJ49YXXZFbZ2m43DEUF9bR84O10bE6-vaFvP6pxwBR-8OsA/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+//                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                        startActivity(intent);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parmas = new HashMap<>();
+
+                //here we pass params
+                parmas.put("action","addItem");
+                RecordDaoImplementation dao = new RecordDaoImplementation(PictureDetailActivity.this);
+                String json = dao.getJsonAllRecordsByPictureId(picture.getId());
+                parmas.put("allData", json);
+                return parmas;
+            }
+        };
+
+        int socketTimeOut = 50000;
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        queue.add(stringRequest);
     }
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})

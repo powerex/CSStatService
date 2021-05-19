@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
@@ -16,8 +19,9 @@ import java.util.List;
 
 import ua.azbest.csstatservice.model.Picture;
 import ua.azbest.csstatservice.model.Record;
+import ua.azbest.csstatservice.model.RecordDTO;
 
-public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordDAO {
+public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordDAO, RecordWeb {
 
     private Context context;
     private static final String DATABASE_NAME = "CrossStitchLibrary.db";
@@ -67,13 +71,25 @@ public class RecordDaoImplementation extends SQLiteOpenHelper implements RecordD
 
     @Override
     public Cursor readAllData() {
-        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_ID + " DESC";;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_ID + " DESC";
+        ;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    @Override
+    public String getJsonAllRecordsByPictureId(int pictureId) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<Record> records = readRecordsByPictureId(pictureId);
+        List<RecordDTO> recordDTOS = new LinkedList<>();
+        for (Record r : records) {
+            recordDTOS.add(new RecordDTO(r));
+        }
+        return gson.toJson(recordDTOS);
     }
 
     @Override

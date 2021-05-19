@@ -61,4 +61,6 @@ public class Record implements Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return formatter.format(date);
     }
+
+
 }
